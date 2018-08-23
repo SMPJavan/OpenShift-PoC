@@ -13,7 +13,7 @@ node {
 		    copyArtifacts(
 			  projectName: 'get-deployable',
 			  filter: '**/*.*',
-			  target: 'prereq',
+			  target: 'target',
 			  flatten: true)
 			bat "docker build . -t  $tag"
     }
