@@ -11,13 +11,6 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */		 
 	
-		def shell(command) {
-			return bat(returnStdout: true, script: "sh -x -c \"${command}\"").trim()	
-		}
-		bat 'set > env.txt' 
-		for (String i : readFile('env.txt').split("\r?\n")) {
-			println i
-		}
 		bat Docker Version
         app = docker.build("getintodevops/hellonode")
     }
