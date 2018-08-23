@@ -1,13 +1,5 @@
 node {
     def app
-	def genericsh(cmd) {
-		if (isUnix()) {
-			sh cmd
-		}
-		else {
-			bat cmd
-		}
-	}
 	
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
@@ -18,6 +10,7 @@ node {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
+                bat 'set'
 
         app = docker.build("getintodevops/hellonode")
     }
