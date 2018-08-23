@@ -8,17 +8,17 @@ node {
     }
 
     stage('Build image') {
-        bat 'set'
         /* This builds the actual image; synonymous to
          * docker build on the command line */
+        bat 'set'
 
         app = docker.build("getintodevops/hellonode")
     }
 
     stage('Test image') {
-        bat 'set'
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
+        bat 'set'
 
         app.inside {
             bat 'echo "Tests passed"'
@@ -26,12 +26,12 @@ node {
     }
 
     stage('Push image') {
-        bat 'set'
         /* Finally, we'll push the image with two tags:
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
          * Pushing multiple tags is cheap, as all the layers are reused. */
+        bat 'set'
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
