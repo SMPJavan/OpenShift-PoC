@@ -1,10 +1,6 @@
 node {
     def app
 	
-	def shell(command) {
-		return bat(returnStdout: true, script: "sh -x -c \"${command}\"").trim()	
-	}
-	
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
 
@@ -13,7 +9,11 @@ node {
 
     stage('Build image') {
         /* This builds the actual image; synonymous to
-         * docker build on the command line */
+         * docker build on the command line */		 
+	
+		def shell(command) {
+			return bat(returnStdout: true, script: "sh -x -c \"${command}\"").trim()	
+		}
 		bat 'set > env.txt' 
 		for (String i : readFile('env.txt').split("\r?\n")) {
 			println i
