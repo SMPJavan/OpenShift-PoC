@@ -7,14 +7,17 @@
 	<packaging>pom</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<springframework.version>4.0.4.RELEASE</springframework.version>
+		<deployable.group.id></deployable.group.id>
+		<deployable.artifact.id></deployable.artifact.id>
+		<deployable.version></deployable.version>
+		<deployable.type></deployable.type>
 	</properties>
 	<dependencies>
 		<dependency>
-        <groupId>com.das.nebula</groupId>
-        <artifactId>NEBULA-UI</artifactId>
-        <version>1.10.1</version>
-			<type>war</type>
+        <groupId>${deploy.group.id}</groupId>
+        <artifactId>${deploy.artifact.id}</artifactId>
+        <version>${deployable.version}</version>
+		<type>$(deployable.type}</type>
 		</dependency>
 
 	</dependencies>
