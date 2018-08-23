@@ -7,10 +7,6 @@
 	<packaging>pom</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<deployable.group.id></deployable.group.id>
-		<deployable.artifact.id></deployable.artifact.id>
-		<deployable.version></deployable.version>
-		<deployable.type></deployable.type>
 	</properties>
 	<dependencies>
 		<dependency>
