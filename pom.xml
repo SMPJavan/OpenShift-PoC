@@ -14,8 +14,8 @@
 	</properties>
 	<dependencies>
 		<dependency>
-        <groupId>${deploy.group.id}</groupId>
-        <artifactId>${deploy.artifact.id}</artifactId>
+        <groupId>${deployable.group.id}</groupId>
+        <artifactId>${deployable.artifact.id}</artifactId>
         <version>${deployable.version}</version>
 		<type>${deployable.type}</type>
 		</dependency>
