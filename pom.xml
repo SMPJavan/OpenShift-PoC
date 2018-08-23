@@ -17,7 +17,7 @@
         <groupId>${deploy.group.id}</groupId>
         <artifactId>${deploy.artifact.id}</artifactId>
         <version>${deployable.version}</version>
-		<type>$(deployable.type}</type>
+		<type>${deployable.type}</type>
 		</dependency>
 
 	</dependencies>
