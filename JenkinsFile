@@ -14,7 +14,11 @@ node {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-
+		bat 'set > env.txt' 
+		for (String i : readFile('env.txt').split("\r?\n")) {
+			println i
+		}
+		bat Docker Version
         app = docker.build("getintodevops/hellonode")
     }
 
