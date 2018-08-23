@@ -10,9 +10,11 @@ node {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */		
-			   step ([$class: 'CopyArtifact',
-					  projectName: 'get-deployable',
-					  filter: '*.*']);
+		    copyArtifacts(
+			  projectName: 'get-deployable',
+			  filter: '**/*.*',
+			  target: 'prereq',
+			  flatten: true)
 			bat "docker build . -t  $tag"
     }
 }
