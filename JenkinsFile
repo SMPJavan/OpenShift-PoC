@@ -6,6 +6,10 @@ node {
 
         checkout scm
     }
+	
+	stage('Get deployable') {
+		bat "mvn clean install -U -Ddeployable.group.id=$deployableGroupId -Ddeployable.artifact.id=$deployableArtifactId -Ddeployable.version=$deployableVersion -Ddeployable.type=$deployableType"
+	}
 
     stage('Build image') {
         /* This builds the actual image; synonymous to
@@ -15,6 +19,12 @@ node {
 			  filter: '**/*.*',
 			  target: 'target',
 			  flatten: true)
-			bat "docker build . -t  $tag"
+			bat "docker build . -t  $deployableArtifactId:$deployableVersion"
     }
+	
+	stage('Deploy image') {
+			bat "docker login --username=pusher docker-registry-default.192.168.137.226.nip.io -p $openshiftDeployerPassword"
+			bat "docker tag $deployableArtifactId:$deployableVersion docker-registry-default.192.168.137.226.nip.io/pushed/$deployableArtifactId:$environment"
+			bat "docker push docker-registry-default.192.168.137.226.nip.io/pushed/$deployableArtifactId:$environment"
+	}
 }
