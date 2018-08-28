@@ -14,11 +14,6 @@ node {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */		
-		    copyArtifacts(
-			  projectName: '$artifactoryBuildProjectName',
-			  filter: '**/*.*',
-			  target: 'target',
-			  flatten: true)
 			bat "docker build . -t  $deployableArtifactId:$deployableVersion"
     }
 	
