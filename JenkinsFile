@@ -8,7 +8,9 @@ node {
     }
 	
 	stage('Get deployable') {
-		bat "mvn clean install -U -Ddeployable.group.id=$deployableGroupId -Ddeployable.artifact.id=$deployableArtifactId -Ddeployable.version=$deployableVersion -Ddeployable.type=$deployableType"
+		maven() {
+			bat "mvn clean install -U -Ddeployable.group.id=$deployableGroupId -Ddeployable.artifact.id=$deployableArtifactId -Ddeployable.version=$deployableVersion -Ddeployable.type=$deployableType"
+		}
 	}
 
     stage('Build image') {
