@@ -9,6 +9,8 @@ node {
     def deployableArtifactId = "$deployableArtifactId"
     def deployableVersion = "$deployableVersion"
     def deployableType = "$deployableType"
+    
+    def imageName = "$deployableArtifactId".toLowerCase()
 	
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
@@ -31,12 +33,12 @@ node {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */		
-			bat "docker build . -t  $deployableArtifactId-$deployableVersion"
+			bat "docker build . -t  " + imageName + ":$deployableVersion"
     }
 	
 	stage('Deploy image') {
 			bat "docker login --username=pusher $openshiftDockerRegistry -p $openshiftDeployerPassword"
-			bat "docker tag $deployableArtifactId:$deployableVersion $openshiftDockerRegistry/pushed/$deployableArtifactId-$environment"
-			bat "docker push $openshiftDockerRegistry/pushed/$deployableArtifactId-$environment"
+			bat "docker tag " + imageName + ":$deployableVersion $openshiftDockerRegistry/pushed/" + imageName + "-$environment"
+			bat "docker push $openshiftDockerRegistry/pushed/" + imageName + "-$environment"
 	}
 }
