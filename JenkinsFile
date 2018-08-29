@@ -22,6 +22,6 @@ node {
 	stage('Deploy image') {
 			bat "docker login --username=pusher $openshiftDockerRegistry -p $openshiftDeployerPassword"
 			bat "docker tag $deployableArtifactId:$deployableVersion $openshiftDockerRegistry/pushed/$deployableArtifactId-$environment"
-			bat "docker push docker-registry-default.192.168.137.226.nip.io/pushed/$deployableArtifactId-$environment"
+			bat "docker push $openshiftDockerRegistry/pushed/$deployableArtifactId-$environment"
 	}
 }
