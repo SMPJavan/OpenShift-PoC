@@ -1,4 +1,4 @@
-node {
+node ('master') {
     def app
     
     def server = Artifactory.server "jbossbuild01"
@@ -33,7 +33,7 @@ node {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */		
-			bat "docker build . -t  " + imageName + ":$deployableVersion"
+			bat "docker build -f $imageType . -t  " + imageName + ":$deployableVersion"
     }
 	
 	stage('Deploy image') {
